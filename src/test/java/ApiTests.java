@@ -12,8 +12,10 @@ public class ApiTests {
     public void getRequestTest(){
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
        Response response = given().when().get("/posts/1");
+
        int statusCode = response.getStatusCode();
        String title = response.jsonPath().getString("title");
+
        Assertions.assertEquals(200, statusCode);
        Assertions.assertEquals("sunt aut facere repellat provident occaecati excepturi optio reprehenderit", title);
        System.out.println("GET REQUEST PASSED");
@@ -26,7 +28,7 @@ public class ApiTests {
 
         Response response = given()
                 .header("Content-Type", "application/json")
-                .header("x-api-key", "reqres-free-v1") // ✅ Added API Key header
+                .header("x-api-key", "reqres-free-v1")
                 .body("{\n" +
                         "    \"name\": \"morpheus\",\n" +
                         "    \"job\": \"leader\"\n" +
@@ -49,7 +51,7 @@ public class ApiTests {
 
         Response response = given()
                 .header("Content-Type", "application/json")
-                .header("x-api-key", "reqres-free-v1") // ✅ Added API Key header
+                .header("x-api-key", "reqres-free-v1")
                 .body("{\n" +
                         "    \"name\": \"morpheus\",\n" +
                         "    \"job\": \"zion resident\"\n" +
@@ -70,7 +72,9 @@ public class ApiTests {
     public void deleteRequestTest(){
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         Response response = when().delete("/posts/1");
+
         int statusCode = response.getStatusCode();
+
         Assertions.assertEquals(200, statusCode);
         System.out.println("DELETE REQUEST PASSED");
     }
