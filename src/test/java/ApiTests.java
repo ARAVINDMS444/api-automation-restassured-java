@@ -68,7 +68,7 @@ public class ApiTests {
   @Order(4)
   public void deleteRequestTest() {
     RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
-    Response response = when().delete("/posts/1");
+    Response response = given().when().delete("/posts/1");
 
     int statusCode = response.getStatusCode();
 
